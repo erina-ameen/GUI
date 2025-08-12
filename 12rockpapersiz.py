@@ -2,7 +2,7 @@ from tkinter import*
 import random
 
 screen=Tk()
-screen.geometry("700x350")
+screen.geometry("700x390")
 
 screen.config(background="pink")
 
@@ -86,6 +86,18 @@ def resetting():
     comp_score=0
     you_score=0
 
+def ruling():
+    screen2=Tk()
+    screen2.geometry("300x250")
+    rules_title=Label(screen2, text="Rules for 'Rock Paper Scissors'")
+    rules_title.place(x=70, y=30)
+    rule1_label=Label(screen2, text="Rock > Scissors")
+    rule1_label.place(x=70, y=65)
+    rule2_label=Label(screen2, text="Scissors > Paper")
+    rule2_label.place(x=70, y=90)
+    rule3_label=Label(screen2, text="Paper > Rock")
+    rule3_label.place(x=70, y=115)
+
 rps_label=Label(screen, text="Rock Paper Scissors")
 rps_label.place(x=70, y=30)
 sub_label=Label(screen, text="Let's Start the Game")
@@ -117,7 +129,10 @@ comp_select_l.place(x=190, y=210)
 comp_score_l=Label(screen, text="Computer Scored: ")
 comp_score_l.place(x=190, y=230)
 
+rules=Button(screen, text="Check the Rules", command=ruling)
+rules.place(x=190, y=270)
+
 reset=Button(screen, text="Reset", command=resetting)
-reset.place(x=190, y=250)
+reset.place(x=190, y=310)
 
 screen.mainloop()
