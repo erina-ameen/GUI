@@ -2,7 +2,7 @@ from tkinter import*
 import random
 
 screen=Tk()
-screen.geometry("700x300")
+screen.geometry("700x350")
 
 screen.config(background="pink")
 
@@ -25,6 +25,13 @@ def you_win():
     winner.config(text="You win!")
     comp_score_l.config(text="Computer Scored: "+str(comp_score))
     you_score_l.config(text="You Scored: "+str(you_score))
+
+    if comp_score==5:
+        winner.config(text="Computer wins Game!")
+        resetting()
+    if you_score==5:
+        winner.config(text="Player wins Game!")
+        resetting()
 
 #TIE Function
 def tied():
@@ -69,6 +76,16 @@ def you_select(opt):
         elif comp_select[1]==0:
             comp_win()
 
+
+def resetting():
+    global you_select_l, you_score_l, comp_select_l, comp_score_l, comp_score, you_score
+    you_select_l.config(text="You Selected: ")
+    you_score_l.config(text="You Scored: ")
+    comp_select_l.config(text="Computer Selected: ")
+    comp_score_l.config(text="Computer Scored: ")
+    comp_score=0
+    you_score=0
+
 rps_label=Label(screen, text="Rock Paper Scissors")
 rps_label.place(x=70, y=30)
 sub_label=Label(screen, text="Let's Start the Game")
@@ -99,5 +116,8 @@ comp_select_l=Label(screen, text="Computer Selected: ")
 comp_select_l.place(x=190, y=210)
 comp_score_l=Label(screen, text="Computer Scored: ")
 comp_score_l.place(x=190, y=230)
+
+reset=Button(screen, text="Reset", command=resetting)
+reset.place(x=190, y=250)
 
 screen.mainloop()
