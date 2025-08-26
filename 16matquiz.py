@@ -29,10 +29,12 @@ selected_question_label=Label(screen, text=str(selected_question))
 
 def next_question():
         global questions, selected_question_label, selected_question, question_index
-        selected_question=random.choice(questions)
-        selected_question_label.config(screen, text=selected_question)
-        question_index=questions.index(selected_question)
-
+        if questions:
+            selected_question=random.choice(questions)
+            selected_question_label.config(text=selected_question)
+            question_index=questions.index(selected_question)
+        else:
+            selected_question_label.config(text="Game Over")
 
 def checking():
     global answers, questions, question_index, selected_question_entry
@@ -41,6 +43,7 @@ def checking():
     if guess==correct_answer:
         status.config(text="Correct!", fg="white", bg="green")
         questions.remove(selected_question)
+        answers.remove(correct_answer)
     else:
         status.config(text="Wrong!", fg="white", bg="red")
     status.place(x=20, y=200)
